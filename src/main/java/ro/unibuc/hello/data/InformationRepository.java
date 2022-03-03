@@ -14,5 +14,5 @@ public interface InformationRepository extends MongoRepository<InformationEntity
 
     public InformationEntity findByTitle(String title);
     public List<InformationEntity> findByDescription(String description);
-
+    //public List<InformationEntity>
 }

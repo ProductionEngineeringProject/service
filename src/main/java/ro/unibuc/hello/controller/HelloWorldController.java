@@ -34,4 +34,8 @@ public class HelloWorldController {
         return new Greeting(counter.incrementAndGet(), String.format(informationTemplate, entity.title, entity.description));
     }
 
+    //@GetMapping("/catalogue")
+    //@ResponseBody
+    //public
+
 }
