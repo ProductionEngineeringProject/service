@@ -18,9 +18,24 @@ public class GameDTO {
         this.title = title;
         this.description = description;
         this.ageRating = ageRating;
-        this.price = price;
+
+        if(price < 0)
+        {
+            this.price = 0;
+        }
+        else {
+            this.price = price;
+        }
+
         this.genre = genre;
-        this.soldCopies = soldCopies;
+
+        if(soldCopies < 0)
+        {
+            this.soldCopies = 0;
+        }
+        else {
+            this.soldCopies = soldCopies;
+        }
     }
 
     public long getId() {

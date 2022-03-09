@@ -23,9 +23,9 @@ public class HelloApplication {
 	@PostConstruct
 	public void runAfterObjectCreated() {
 		informationRepository.deleteAll();
-		informationRepository.save(new InformationEntity("1", "Mario", "Very nice game", 'E', 14.99d, "Adventure", 87000));
+		informationRepository.save(new InformationEntity("1", "Mario", "I mean..It's Mario", 'E', 14.99d, "Adventure", 87000));
 		informationRepository.save(new InformationEntity("2", "Skyrim", "2011 Best game lol", 'M', 19.99d, "RPG", 196000));
-		informationRepository.save(new InformationEntity("3", "Rust", "Chill with friends", 'A', 29.99d, "Survival", 18500));
+		informationRepository.save(new InformationEntity("3", "Rust", "Family-Friendly 10/10", 'A', 29.99d, "Survival", 18500));
 	}
 
 }

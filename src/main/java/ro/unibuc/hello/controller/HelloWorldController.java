@@ -33,9 +33,4 @@ public class HelloWorldController {
         InformationEntity entity = informationRepository.findByTitle(title);
         return new Greeting(counter.incrementAndGet(), String.format(informationTemplate, entity.title, entity.description));
     }
-
-    //@GetMapping("/catalogue")
-    //@ResponseBody
-    //public
-
 }
