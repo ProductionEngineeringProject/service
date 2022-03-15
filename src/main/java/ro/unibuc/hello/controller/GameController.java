@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ro.unibuc.hello.data.InformationEntity;
 import ro.unibuc.hello.data.InformationRepository;
 import ro.unibuc.hello.dto.GameDTO;
-import ro.unibuc.hello.dto.Greeting;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
