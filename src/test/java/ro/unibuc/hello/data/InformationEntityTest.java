@@ -10,6 +10,11 @@ class InformationEntityTest {
     InformationEntity informationEntity = new InformationEntity("12","Among Us","Fun to play with strangers",'M',3.99d,"Social",45000);
 
     @Test
+    void test_toString(){
+        Assertions.assertEquals(informationEntity.toString(), "12\nTitle:Among Us\nFun to play with strangers\nAge Rating:M\nPrice:3.99\nGenre:Social\nSold Copies:45000");
+    }
+
+    @Test
     void test_id(){
         Assertions.assertEquals("12",informationEntity.getId());
     }
@@ -37,6 +42,7 @@ class InformationEntityTest {
     void test_soldCopies(){
         Assertions.assertEquals(45000,informationEntity.getSoldCopies());
     }
+
     @Test
     void test_setTitle(){
         informationEntity.setTitle("Mario");
@@ -72,7 +78,6 @@ class InformationEntityTest {
         informationEntity.setSoldCopies(5);
         Assertions.assertEquals(5,informationEntity.getSoldCopies());
     }
-
 
 
 }

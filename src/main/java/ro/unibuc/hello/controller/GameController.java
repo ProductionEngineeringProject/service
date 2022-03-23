@@ -98,7 +98,7 @@ public class GameController {
     }
 
     @PutMapping("/updatePrice/{id}")
-    public ResponseEntity<String> editPrice(@PathVariable long id, double price) {
+    public ResponseEntity<String> editPrice(@PathVariable long id, @RequestBody double price) {
 
         if(!informationRepository.existsById(String.valueOf(id))){
             return new ResponseEntity<>("Game does not exist !", HttpStatus.BAD_REQUEST);
@@ -115,7 +115,7 @@ public class GameController {
     }
 
     @PutMapping("/updateSoldCopies/{id}")
-    public ResponseEntity<String> editSoldCopies(@PathVariable long id, int soldCopies) {
+    public ResponseEntity<String> editSoldCopies(@PathVariable long id, @RequestParam int soldCopies) {
 
         if(!informationRepository.existsById(String.valueOf(id))){
             return new ResponseEntity<>("Game does not exist !", HttpStatus.BAD_REQUEST);
@@ -132,7 +132,6 @@ public class GameController {
             else {
                 return new ResponseEntity<>("Number of sold copies cannot be less than previous value !", HttpStatus.CONFLICT);
             }
-
         }
     }
 
