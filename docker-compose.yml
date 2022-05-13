@@ -1,9 +1,14 @@
 version: '3.1'
 services:
 
+<<<<<<< HEAD
   hello: # stateless spring application
     image: hello-img
     build: .
+=======
+  hello:
+    image: valentin2211/hello-img:${IMAGE_TAG}
+>>>>>>> 744f14e2409d509e59bd4152f987f34d69d7cad5
     ports:
       - 8080:8080
     environment:
@@ -35,7 +40,10 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+<<<<<<< HEAD
     logging:
       driver: loki
       options:
         loki-url: "http://host.docker.internal:3100/loki/api/v1/push"
+=======
+>>>>>>> 744f14e2409d509e59bd4152f987f34d69d7cad5
