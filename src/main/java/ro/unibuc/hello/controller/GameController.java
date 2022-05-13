@@ -1,5 +1,8 @@
 package ro.unibuc.hello.controller;
 
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +21,27 @@ public class GameController {
     @Autowired
     private InformationRepository informationRepository;
 
+    @Autowired
+    MeterRegistry metricsRegistry;
+
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/details")
     @ResponseBody
+    @Timed(value = "game.details.time", description = "Time taken to return a game detail")
+    @Counted(value = "game.details.count", description = "Times game details was returned")
     public GameDTO gameDetails(@RequestParam(name="id", required=false, defaultValue="1") String id) {
+        metricsRegistry.counter("my_non_aop_metric_details", "endpoint", "details").increment(counter.incrementAndGet());
         Optional<InformationEntity> entity = informationRepository.findById(id);
         return new GameDTO(Long.parseLong(entity.get().id), entity.get().title, entity.get().description, entity.get().ageRating, entity.get().price, entity.get().genre, entity.get().soldCopies);
     }
 
     @GetMapping("/catalogue")
     @ResponseBody
+    @Timed(value = "game.catalogue.time", description = "Time taken to return games catalogue")
+    @Counted(value = "game.catalogue.count", description = "Times game catalogue was returned")
     public List<GameDTO> gameList() {
+        metricsRegistry.counter("my_non_aop_metric_catalogue", "endpoint", "catalogue").increment(counter.incrementAndGet());
         List<InformationEntity> entities = informationRepository.findAll();
         List<GameDTO> games = new ArrayList<>();
         for(InformationEntity entity: entities) {
@@ -40,6 +52,8 @@ public class GameController {
     }
 
     @PostMapping("/new")
+    @Timed(value = "new.game.time", description = "Time taken to add a new game")
+    @Counted(value = "new.game.count", description = "Times a new game was created")
     public ResponseEntity<String> newGameDTO(@RequestBody GameDTO gameDTO) {
         InformationEntity entity = new InformationEntity(String.valueOf(gameDTO.getId()), gameDTO.getTitle(), gameDTO.getDescription(), gameDTO.getAgeRating(), gameDTO.getPrice(), gameDTO.getGenre(), gameDTO.getSoldCopies());
 
